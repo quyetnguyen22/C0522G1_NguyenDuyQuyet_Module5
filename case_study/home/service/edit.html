@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-<div th:insert="~{/home::header}"></div>
+<div id="header"></div>
 <div class="container col-12">
     <h3 class="text-center" style="color: white">EDIT FACILITY</h3>
 </div>
@@ -130,6 +130,11 @@
             }
         })
     })
+</script>
+<script>
+    $(function () {
+        $("#header").load("../header.html");
+    });
 </script>
 </body>
 </html>
