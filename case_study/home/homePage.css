@@ -1,0 +1,31 @@
+
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    position: relative;
+    bottom: 0;
+    /*background: rgba(0, 0, 0, 0.5);*/
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+
+.textColor {
+    color: #14140F;
+}
+
+.paragraph {
+    color: #053D38;
+    text-align: justify;
+}
+
+.titleText {
+    color: #EB9900;
+}

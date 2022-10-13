@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"/>
+
+    <style>
+        body {
+            background-image: url("https://c8n8e4j6.rocketcdn.me/wp-content/uploads/2016/09/28-Mr.-Hasgaha13.jpg");
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{/home::header}"></div>
+<div class="container col-12">
+    <h3 class="text-center">
+        <a href="/contract/list" class="text-black text-decoration-none">Contract List</a>
+    </h3>
+    <h5 class="text-center" style="color: blue" th:text="${edit}"></h5>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalAdd">
+        Add New Contract
+    </button>
+
+    <table id="customerTable" class="table table-light table-striped table-bordered" style="width: 100%">
+        <!--        <thead>-->
+        <tr>
+            <th>#</th>
+            <th>Service</th>
+            <th>Customer</th>
+            <th>Begin</th>
+            <th>End</th>
+            <th>Deposit</th>
+            <th>Total Cost</th>
+            <th>Attach Facility</th>
+        </tr>
+        <!--        </thead>-->
+        <!--        <tbody>-->
+        <tr th:each="contractF, status : ${contracts}">
+            <td th:text="${contracts.number * contracts.size + status.count}"></td>
+            <td th:text="${contractF.serviceName}"></td>
+            <td th:text="${contractF.customerName}"></td>
+            <td th:text="${contractF.beginDate}"></td>
+            <td th:text="${contractF.endDate}"></td>
+            <td th:text="${contractF.deposit}"></td>
+            <td th:text="${contractF.totalCost}"></td>
+            <td>
+                <a type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-row="${contractF}"
+                   th:attr="data-bs-target='#add' + ${contractF.id}">
+                    <i class="fas fa-address-card"></i>
+                    +
+                </a>
+                <!-- Modal add contract detail-->
+                <div th:fragment="modal" class="modal fade" th:id="add + ${contractF.id}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form class="g-3" action="/contract/addContractDetail" method="post"
+                                  th:object="${contractDetailDto}">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Detail Contract:</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="col-12">
+                                        <label for="inputName" class="form-label">Service:</label>
+                                        <input disabled th:value="${contractF.serviceName}" class="form-control"
+                                               id="inputName"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Service Attach:</label>
+                                        <select th:field="*{serviceAttach}" class="form-select">
+                                            <option
+                                                    th:each="attach : ${ServiceAttach}" th:text="${attach.name}"
+                                                    th:value="${attach.id}">
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="qty" class="form-label">Quantity:</label>
+                                        <input type="text" th:field="*{quantity}" class="form-control" id="qty"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <input hidden name="contract" th:value="${contractF.id}"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary text-decoration-none">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
+                   th:href="@{/contract/formEdit/__${contractF.id}__}">
+                    Attach Services
+                </a>
+            </td>
+        </tr>
+        <!--        </tbody>-->
+    </table>
+    <!--Model add-->
+    <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal">Add new contract</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container w-75">
+                        <div class="col-12">
+                            <label for="beginDate" class="form-label">Begin Date:</label>
+                            <input type="date" id="beginDate" th:min="${beginDate}" class="form-control"/>
+                        </div>
+                        <div class="col-12" id="endDay">
+                            <label for="endDate" class="form-label">End Date:</label>
+                            <input type="date" id="endDate" class="form-control"/>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="deposit" class="form-label">Deposit:</label>
+                            <input type="text" class="form-control" id="deposit"/>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Employee:</label>
+                            <select id="employee" class="form-select">
+                                <option th:each="em : ${employees}" th:text="${em.name}"
+                                        th:value="${em.id}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Customer:</label>
+                            <select id="customer" class="form-select">
+                                <option th:each="cus : ${customers}" th:text="${cus.name}"
+                                        th:value="${cus.id}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Service:</label>
+                            <select id="services" class="form-select">
+                                <option th:each="ser : ${services}" th:text="${ser.name}"
+                                        th:value="${ser.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="addBtn">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number - 1},search=${search})}"
+                       th:if="${contracts.hasPrevious()}">Previous</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number},search=${search})}"
+                       th:text="${contracts.number + 1}">
+                    </a>
+                </li>
+                <li class="page-item" th:if="${contracts.hasNext()}">
+                    <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number + 1},search=${search})}"
+                       th:text="${contracts.number + 2}">
+                    </a>
+                </li>
+                <li class="page-item" th:if="(${contracts.totalPages} - ${contracts.number} > 2)">
+                    <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number + 2},search=${search})}"
+                       th:text="${contracts.number + 3}">
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number + 1},search=${search})}"
+                       th:if="${contracts.hasNext()}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!--<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>-->
+<script>
+    $(document).ready(function () {
+        $("#addBtn").click(function () {
+            let begin = $("#beginDate").val();
+            let endDate = $("#endDate").val();
+            let deposit = $("#deposit").val();
+            let employeeId = $("#employee").val();
+            let customerId = $("#customer").val();
+            let servicesId = $("#services").val();
+
+            let newContract = {
+                'begin': begin,
+                'end': endDate,
+                'deposit': deposit,
+                'employee': {'id': employeeId},
+                'customer': {'id': customerId},
+                'services': {'id': servicesId}
+            };
+            $.ajax({
+                url: "http://localhost:8080/contract/addNewContract",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                type: "POST",
+                // contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(newContract),
+                // data: JSON.stringify({'model': model, 'producer': producer, 'price': price}),
+                success: function () {
+                    $('#exampleModalAdd').modal('hide');
+                    re();
+                }
+            })
+        });
+
+        // $('#beginDate').on('change', function () {
+        //     let beginDay = $(this).val();
+        //     $('#endDate').val(beginDay);
+        //     // $('#endDay').style = "block";
+        //
+        // });
+
+        function re() {
+            location.reload()
+        }
+    });
+
+</script>
+</body>
+</html>
