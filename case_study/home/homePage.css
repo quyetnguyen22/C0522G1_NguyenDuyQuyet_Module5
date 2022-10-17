@@ -29,7 +29,7 @@
     color: #EB9900;
 }
 
-#onTop {
+#myBtn {
     display: none;
     position: fixed;
     bottom: 20px;
