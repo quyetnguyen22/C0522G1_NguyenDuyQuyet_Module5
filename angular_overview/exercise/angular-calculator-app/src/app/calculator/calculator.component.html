@@ -1,0 +1,21 @@
+<form class="w-25 container">
+  <div class="mb-4">
+    <label for="firstNum" class="form-label">Input 1st:</label>
+    <input type="number" class="form-control" id="firstNum" [(ngModel)]="firstNumber" name="first">
+  </div>
+  <div class="mb-4">
+    <select class="form-select" name="operator" #cal>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="x">x</option>
+      <option value="/">/</option>
+    </select>
+  </div>
+  <div class="mb-4">
+    <label for="secondNum" class="form-label">Input 2nd:</label>
+    <input type="number" class="form-control" name="second" id="secondNum" [(ngModel)]="secondNumber">
+  </div>
+  <button class="btn btn-primary mb-2" (click)="getResult(cal.value)">Result</button>
+  <h6 style="color: red"> {{result}}</h6>
+</form>
+

@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-
+<div id="header"></div>
 <div class="container col-12">
     <h3 class="text-center">
         <a href="/customer/list" class="text-black text-decoration-none">Customer List</a>
@@ -54,44 +54,41 @@
             <td th:text="${customer.email}"></td>
             <td th:text="${customer.address}"></td>
             <td>
-                <a class="text-decoration-none text-white btn btn-primary btn-sm"
-                   th:href="@{/customer/formEdit/__${customer.id}__}">
-                    Edit
-                </a>
+                <a href="edit.html" class="btn btn-warning btn-sm">Edit</a>
 
             </td>
             <td>
-                <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-row="${customer}"
-                   th:attr="data-bs-target='#delete' + ${customer.id}">
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalDel">
                     <i class="fas fa-address-card"></i>
                     Delete
-                </a>
-                <!-- Modal Delete -->
-                <div th:fragment="modal" class="modal fade" th:id="delete + ${customer.id}" tabindex="-1"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">You are about to delete:</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <span class="ps-2">Customer: </span>
-                                <span style="color: red" th:text="${customer.name}"></span>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <a th:href="@{/customer/delete/__${customer.id}__}" type="submit"
-                                   class="btn btn-primary text-decoration-none">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </button>
             </td>
         </tr>
 
     </table>
+    <!-- Modal Delete-->
+    <div class="modal fade" id="exampleModalDel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">You are about to delete:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span class="ps-2">Customer: </span>
+                    <span style="color: red" text="${employee.name}"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="@{/employee/delete/__${employee.id}__}" type="submit"
+                       class="btn btn-primary text-decoration-none">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
@@ -130,5 +127,11 @@
 <!--        });-->
 <!--    });-->
 <!--</script>-->
+
+<script>
+    $(function () {
+        $("#header").load("../header.html");
+    });
+</script>
 </body>
 </html>
