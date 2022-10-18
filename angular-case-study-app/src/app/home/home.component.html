@@ -6,8 +6,14 @@
           type="video/webm">
 </video>
 <app-header class="sticky-top"></app-header>
-<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
-
+<div (click)="scrollToTop()" [ngClass]="{ 'to-top': true }">
+  <i class="fa-solid fa-arrow-up"></i>
+</div>
+<!--<script>-->
+<!--  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {-->
+<!--    this.windowScrolled = true;-->
+<!--  }-->
+<!--</script>-->
 <div class="content">
   <div id="header" class="sticky-top"></div>
   <div>
@@ -326,30 +332,6 @@
     </div>
   </div>
   <app-footer></app-footer>
-
 </div>
 
 
-<script>
-  // Get the button
-  let onTop = document.getElementById("myBtn");
-  //
-  // // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function () {
-    scrollFunction()
-  };
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      onTop.style.display = "block";
-    } else {
-      onTop.style.display = "none";
-    }
-  }
-
-  // When the user clicks on the button, scroll to the top of the document
-  function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-</script>
