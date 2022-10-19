@@ -1,14 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ServiceComponent } from './service/service.component';
-import { AddServiceComponent } from './service/add-service/add-service.component';
-import { EditServiceComponent } from './service/edit-service/edit-service.component';
+import {RouterModule} from '@angular/router';
+import {HomeComponent} from './home/home.component';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import { FacilityComponent } from './facility/facility.component';
+import { EditFacilityComponent } from './facility/edit-facility/edit-facility.component';
+import { ListFacilityComponent } from './facility/list-facility/list-facility.component';
+import {AddFacilityComponent} from './facility/add-facility/add-facility.component';
+import { CustomerComponent } from './customer/customer.component';
+import { AddCustomerComponent } from './customer/add-customer/add-customer.component';
+import { ListCustomerComponent } from './customer/list-customer/list-customer.component';
+import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +21,18 @@ import { EditServiceComponent } from './service/edit-service/edit-service.compon
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    ServiceComponent,
-    AddServiceComponent,
-    EditServiceComponent
+    FacilityComponent,
+    AddFacilityComponent,
+    EditFacilityComponent,
+    ListFacilityComponent,
+    CustomerComponent,
+    AddCustomerComponent,
+    ListCustomerComponent,
+    EditCustomerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

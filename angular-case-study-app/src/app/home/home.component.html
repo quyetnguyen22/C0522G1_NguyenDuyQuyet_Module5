@@ -1,4 +1,3 @@
-
 <video autoplay loop muted id="myVideo">
   <source src="https://static.vecteezy.com/system/resources/previews/011/358/549/mp4/of-golden-bokeh-lights-free-video.mp4"
           type="video/mp4">
@@ -6,7 +5,7 @@
           type="video/webm">
 </video>
 <app-header class="sticky-top"></app-header>
-<div (click)="scrollToTop()" [ngClass]="{ 'to-top': true }">
+<div class="to-top" (click)="scrollToTop()" [ngClass]="{ 'show-scrollTop': windowScrolled }">
   <i class="fa-solid fa-arrow-up"></i>
 </div>
 <!--<script>-->
