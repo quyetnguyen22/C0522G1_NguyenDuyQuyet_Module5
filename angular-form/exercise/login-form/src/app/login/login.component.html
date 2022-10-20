@@ -1,0 +1,32 @@
+<h2 class="text-center">Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="container w-25">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" formControlName="emailAddress" class="form-control" id="exampleInputEmail1"
+           aria-describedby="emailHelp" required>
+    <p class="text-danger"
+       *ngIf="loginFormControl.emailAddress.errors?.email">
+      Please input valid email. ex: abc@domain
+    </p>
+    <p class="text-danger"
+       *ngIf="loginFormControl.emailAddress.hasError('required') && loginFormControl.emailAddress.dirty">
+      Email is required.
+    </p>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+    <p class="text-danger" *ngIf="loginFormControl.password.hasError('required') && loginFormControl.password.dirty">
+      Passwords is required.
+    </p>
+    <p class="text-danger" *ngIf="loginFormControl.password.errors?.minlength">
+      Passwords must be at least 6 characters.
+    </p>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
