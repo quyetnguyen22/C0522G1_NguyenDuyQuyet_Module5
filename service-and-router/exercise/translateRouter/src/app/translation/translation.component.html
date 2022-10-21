@@ -1,0 +1,13 @@
+<h3>LIST WORDS</h3>
+<table style="border: 1px solid black">
+  <tr>
+    <th>No</th>
+    <th>Word</th>
+    <th>Mean</th>
+  </tr>
+  <tr *ngFor="let w of words; index as i">
+    <td>{{i+1}}</td>
+    <td>{{w.word}}</td>
+    <td><a routerLink="/translate/{{w.word}}">Translate</a></td>
+  </tr>
+</table>

@@ -1,0 +1,42 @@
+<div id="header" class="sticky-top"></div>
+<h3 class="text-center" style="color: white">Add new customer</h3>
+<div class="container border border-primary w-50 mb-5">
+  <form class="g-3" action="/customer/addNew" method="post" th:object="${customerDto}">
+  <div class="col-12">
+    <label for="beginDate" class="form-label">Begin Date:</label>
+    <input type="date" id="beginDate" th:min="${beginDate}" class="form-control"/>
+  </div>
+  <div class="col-12" id="endDay">
+    <label for="endDate" class="form-label">End Date:</label>
+    <input type="date" id="endDate" class="form-control"/>
+  </div>
+  <div class="col-12 mb-3">
+    <label for="deposit" class="form-label">Deposit:</label>
+    <input type="text" class="form-control" id="deposit"/>
+  </div>
+  <div class="col-12 mb-3">
+    <label class="form-label">Employee:</label>
+    <select id="employee" class="form-select">
+      <option th:each="em : ${employees}" th:text="${em.name}"
+              th:value="${em.id}">
+      </option>
+    </select>
+  </div>
+  <div class="col-12 mb-3">
+    <label class="form-label">Customer:</label>
+    <select id="customer" class="form-select">
+      <option th:each="cus : ${customers}" th:text="${cus.name}"
+              th:value="${cus.id}">
+      </option>
+    </select>
+  </div>
+  <div class="col-12 mb-3">
+    <label class="form-label">Service:</label>
+    <select id="services" class="form-select">
+      <option th:each="ser : ${services}" th:text="${ser.name}"
+              th:value="${ser.id}">
+      </option>
+    </select>
+  </div>
+  </form>
+</div>
