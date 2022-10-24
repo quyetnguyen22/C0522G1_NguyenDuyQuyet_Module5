@@ -3,6 +3,7 @@ import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {IProduct} from '../../model/iproduct';
+import {Category} from '../../model/category';
 
 @Component({
   selector: 'app-product-delete',
@@ -13,6 +14,7 @@ export class ProductDeleteComponent implements OnInit {
 
   formDelete: FormGroup;
   product: IProduct;
+  category: Category[] = [];
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
@@ -21,24 +23,27 @@ export class ProductDeleteComponent implements OnInit {
   ) {
   }
 
-
   ngOnInit(): void {
     const id = Number(this.activatedRoute.snapshot.params.delId);
-    this.product = this.productService.findById(id);
+    this.productService.findById(id).subscribe(value => {
+      this.formDelete.patchValue(value);
+      this.formDelete.controls.category.patchValue(value.category.name);
+    });
     console.log(this.product);
     this.formDelete = this.fb.group({
       id: [],
       name: [],
       price: [],
-      description: []
+      description: [],
+      category: []
     });
-    this.formDelete.patchValue(this.product);
   }
 
   saveDeleting() {
     const product = this.formDelete.value;
     console.log(product);
-    this.productService.deleteProduct(product.id);
-    this.router.navigateByUrl('/product/list');
+    this.productService.deleteProduct(product.id).subscribe(() => {
+      this.router.navigateByUrl('product/list');
+    });
   }
 }

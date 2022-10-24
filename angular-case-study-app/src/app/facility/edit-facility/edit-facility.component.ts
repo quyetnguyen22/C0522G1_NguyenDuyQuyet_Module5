@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-facility',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditFacilityComponent implements OnInit {
 
-  constructor() { }
+  editingForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.editingForm = this.fb.group({
+      serviceType: [],
+      name: [],
+      area: [],
+      price: [],
+      capacity: [],
+      standard: [],
+      utilities: [],
+      pool: [],
+      floor: [],
+      free: [],
+      rentingType: []
+    });
   }
 
 }

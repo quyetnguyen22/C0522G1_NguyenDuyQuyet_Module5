@@ -1,0 +1,14 @@
+<h1>Category List</h1>
+<table class="text-center">
+  <tr>
+    <td>No</td>
+    <td>Name</td>
+    <td>Action</td>
+  </tr>
+  <tr *ngFor="let category of categories; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{category.name}}</td>
+    <td><a routerLink="/category/{{category.id}}">Update</a></td>
+    <td><a routerLink="/categoryDel/{{category.id}}">Remove</a></td>
+  </tr>
+</table>

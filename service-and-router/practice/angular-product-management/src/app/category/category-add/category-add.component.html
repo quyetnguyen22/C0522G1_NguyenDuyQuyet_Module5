@@ -1,0 +1,15 @@
+<h1>Create new category</h1>
+<form [formGroup]="addingForm" (ngSubmit)="saveAdding()">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button>Save</button>
+      </td>
+    </tr>
+  </table>
+</form>

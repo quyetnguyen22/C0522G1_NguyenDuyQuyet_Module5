@@ -1,0 +1,14 @@
+<h1>Update Category</h1>
+<form [formGroup]="updatingForm" (ngSubmit)="saveUpdating()">
+  <table>
+    <tr>
+      <td><input type="hidden" formControlName="id"></td>
+      <td>Name:</td>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Update</button></td>
+    </tr>
+  </table>
+</form>

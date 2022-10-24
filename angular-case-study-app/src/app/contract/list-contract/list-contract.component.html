@@ -1,18 +1,28 @@
-<div id="header" class="sticky-top"></div>
+<app-header class="sticky-top"></app-header>
 <body>
 <div class="container col-12">
-  <h3 class="text-center">
+  <h3 class="text-center mt-3">
     <a href="/contract/list" class="text-black text-decoration-none">Contract List</a>
   </h3>
-  <h5 class="text-center" style="color: blue" th:text="${edit}"></h5>
+  <h5 class="text-center" style="color: blue" text="${edit}"></h5>
 </div>
 
 <div class="container">
-  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalAdd">
-    Add New Contract
-  </button>
-
-  <table id="customerTable" class="table table-light table-striped table-bordered" style="width: 100%">
+  <div class="row mx-0">
+    <div class="col-2 d-flex mb-1">
+      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalAdd">
+        Add New Contract
+      </button>
+    </div>
+    <div class="col-7"></div>
+    <div class="col-3">
+      <form class="d-flex mb-1" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  <table id="customerTable" class="text-center table bg-light table-striped table-bordered" style="width: 100%">
     <!--        <thead>-->
     <tr>
       <th>#</th>
@@ -26,68 +36,122 @@
     </tr>
     <!--        </thead>-->
     <!--        <tbody>-->
-    <tr th:each="contractF, status : ${contracts}">
-      <td th:text="${contracts.number * contracts.size + status.count}"></td>
-      <td th:text="${contractF.serviceName}"></td>
-      <td th:text="${contractF.customerName}"></td>
-      <td th:text="${contractF.beginDate}"></td>
-      <td th:text="${contractF.endDate}"></td>
-      <td th:text="${contractF.deposit}"></td>
-      <td th:text="${contractF.totalCost}"></td>
+    <tr>
+      <td>1</td>
+      <td>Villa</td>
+      <td>Nguyen Tat Thanh</td>
+      <td>15/10/2022</td>
+      <td>25/10/2022</td>
+      <td>2.000.000</td>
+      <td>2150</td>
       <td>
-        <a type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-row="${contractF}"
-           th:attr="data-bs-target='#add' + ${contractF.id}">
+        <a type="button" style="background-color: blue" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal"
+           data-row="${contractF}">
           <i class="fas fa-address-card"></i>
           +
         </a>
-        <!-- Modal add contract detail-->
-        <div th:fragment="modal" class="modal fade" th:id="add + ${contractF.id}" tabindex="-1"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form class="g-3" action="/contract/addContractDetail" method="post"
-                    th:object="${contractDetailDto}">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add Detail Contract:</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"
-                          aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                  <div class="col-12">
-                    <label for="inputName" class="form-label">Service:</label>
-                    <input disabled th:value="${contractF.serviceName}" class="form-control"
-                           id="inputName"/>
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label">Service Attach:</label>
-                    <select th:field="*{serviceAttach}" class="form-select">
-                      <option
-                        th:each="attach : ${ServiceAttach}" th:text="${attach.name}"
-                        th:value="${attach.id}">
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="col-12">
-                    <label for="qty" class="form-label">Quantity:</label>
-                    <input type="text" th:field="*{quantity}" class="form-control" id="qty"/>
-                  </div>
-                  <div class="col-12">
-                    <input hidden name="contract" th:value="${contractF.id}"/>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                  </button>
-                  <button type="submit" class="btn btn-primary text-decoration-none">Save</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
         <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
-           th:href="@{/contract/formEdit/__${contractF.id}__}">
+           style="background-color: blue">
+          Attach Services
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Villa</td>
+      <td>Nguyen Tat Thanh</td>
+      <td>15/10/2022</td>
+      <td>25/10/2022</td>
+      <td>2.000.000</td>
+      <td>2150</td>
+      <td>
+        <a type="button" style="background-color: blue" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal"
+           data-row="${contractF}">
+          <i class="fas fa-address-card"></i>
+          +
+        </a>
+        <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
+           style="background-color: blue">
+          Attach Services
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Villa</td>
+      <td>Nguyen Tat Thanh</td>
+      <td>15/10/2022</td>
+      <td>25/10/2022</td>
+      <td>2.000.000</td>
+      <td>2150</td>
+      <td>
+        <a type="button" style="background-color: blue" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal"
+           data-row="${contractF}">
+          <i class="fas fa-address-card"></i>
+          +
+        </a>
+        <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
+           style="background-color: blue">
+          Attach Services
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Villa</td>
+      <td>Nguyen Tat Thanh</td>
+      <td>15/10/2022</td>
+      <td>25/10/2022</td>
+      <td>2.000.000</td>
+      <td>2150</td>
+      <td>
+        <a type="button" style="background-color: blue" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal"
+           data-row="${contractF}">
+          <i class="fas fa-address-card"></i>
+          +
+        </a>
+        <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
+           style="background-color: blue">
+          Attach Services
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Villa</td>
+      <td>Nguyen Tat Thanh</td>
+      <td>15/10/2022</td>
+      <td>25/10/2022</td>
+      <td>2.000.000</td>
+      <td>2150</td>
+      <td>
+        <a type="button" style="background-color: blue" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal"
+           data-row="${contractF}">
+          <i class="fas fa-address-card"></i>
+          +
+        </a>
+        <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
+           style="background-color: blue">
+          Attach Services
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Villa</td>
+      <td>Nguyen Tat Thanh</td>
+      <td>15/10/2022</td>
+      <td>25/10/2022</td>
+      <td>2.000.000</td>
+      <td>2150</td>
+      <td>
+        <a type="button" style="background-color: blue" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal"
+           data-row="${contractF}">
+          <i class="fas fa-address-card"></i>
+          +
+        </a>
+        <a type="submit" class="text-white btn btn-primary btn-sm" id="edit"
+           style="background-color: blue">
           Attach Services
         </a>
       </td>
@@ -158,17 +222,17 @@
         </li>
         <li class="page-item">
           <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number},search=${search})}"
-             th:text="${contracts.number + 1}">
+             th:text="${contracts.number + 1}">1
           </a>
         </li>
         <li class="page-item" th:if="${contracts.hasNext()}">
           <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number + 1},search=${search})}"
-             th:text="${contracts.number + 2}">
+             th:text="${contracts.number + 2}">2
           </a>
         </li>
         <li class="page-item" th:if="(${contracts.totalPages} - ${contracts.number} > 2)">
           <a class="page-link" th:href="@{'/contract/list'(page=${contracts.number + 2},search=${search})}"
-             th:text="${contracts.number + 3}">
+             th:text="${contracts.number + 3}">3
           </a>
         </li>
         <li class="page-item">

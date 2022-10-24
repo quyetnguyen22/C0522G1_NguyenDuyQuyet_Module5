@@ -1,0 +1,13 @@
+<h1>Update Category</h1>
+<form [formGroup]="updatingForm" (ngSubmit)="saveUpdating()">
+  <table>
+    <tr>
+      <td>Tên danh mục:</td>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Cập nhật</button></td>
+    </tr>
+  </table>
+</form>

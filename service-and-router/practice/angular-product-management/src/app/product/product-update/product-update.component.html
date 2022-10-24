@@ -1,8 +1,9 @@
 <h1 class="text-center">UPDATE PRODUCT</h1>
-<form [formGroup]="formUpdate" (ngSubmit)="saveEditing()">
+<!--<div *ngIf="categories !== undefined">-->
+<form [formGroup]="formUpdate" (ngSubmit)="saveEditing()" >
   <div class="mb-3">
-    <label for="exampleInputId" class="form-label">ID</label>
-    <input formControlName="id" type="number" class="form-control" id="exampleInputId">
+<!--    <label for="exampleInputId" class="form-label">ID</label>-->
+    <input formControlName="id" type="hidden" class="form-control" id="exampleInputId">
   </div>
   <div class="mb-3">
     <label for="exampleInputName" class="form-label">Name</label>
@@ -16,5 +17,13 @@
     <label for="inputDescription" class="form-label">Description</label>
     <input formControlName="description" type="text" class="form-control" id="inputDescription">
   </div>
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <select formControlName="category" class="form-control" [compareWith]="compareWithId">
+<!--      <option value="null">Select category</option>-->
+      <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+    </select>
+  </div>
   <button type="submit" class="btn btn-primary">Save</button>
 </form>
+<!--</div>-->

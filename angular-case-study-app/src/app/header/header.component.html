@@ -2,7 +2,7 @@
   <div class="row">
     <nav class="navbar navbar-expand-sm bg-dark" style="height: 56px">
       <div class="container-fluid">
-        &nbsp;&nbsp;<a class="navbar-brand" style="color: white" href="../pageBody.html">Home</a>
+        &nbsp;&nbsp;<a class="navbar-brand" style="color: white" routerLink="">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,21 +10,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link textColor" href="#" role="button"
-                 data-bs-toggle="dropdown">Employee</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="employee/list.html">Employee list</a></li>
-                <li><a class="dropdown-item" href="employee/add.html">Add new employee</a></li>
-              </ul>
-            </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link textColor" href="#" role="button"
                  data-bs-toggle="dropdown">Customer</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" >Customer list</a></li>
-                <li><a class="dropdown-item" href="customer/add.html">Add new customer</a></li>
+                <li><a class="dropdown-item" routerLink="/customer/list">Customer list</a></li>
+                <li><a class="dropdown-item" routerLink="/customer/add">Add new customer</a></li>
               </ul>
             </li>
 
@@ -32,8 +24,8 @@
               <a class="nav-link textColor" href="#" role="button"
                  data-bs-toggle="dropdown">Service</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" [routerLink]="['/list-service']">Service list</a></li>
-                <li><a class="dropdown-item" href="service/add.html">Add new service</a></li>
+                <li><a class="dropdown-item" routerLink="/facility/list">Service list</a></li>
+                <li><a class="dropdown-item" routerLink="/facility/add">Add new service</a></li>
               </ul>
             </li>
 
@@ -41,10 +33,11 @@
               <a class="nav-link textColor" href="#" role="button"
                  data-bs-toggle="dropdown">Contract</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="contract/list.html">Contract list</a></li>
-                <li><a class="dropdown-item" href="contract/">Add new contract</a></li>
+                <li><a class="dropdown-item" routerLink="/contract/list">Contract list</a></li>
+                <li><a class="dropdown-item" routerLink="/contract/add">Add new contract</a></li>
               </ul>
             </li>
+
           </ul>
           <div id="number" style="color: white">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
