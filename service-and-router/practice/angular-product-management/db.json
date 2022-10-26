@@ -19,16 +19,6 @@
   ],
   "products": [
     {
-      "id": 1,
-      "name": "IPhone 12",
-      "price": 2400000,
-      "description": "New",
-      "category": {
-        "id": 1,
-        "name": "Sport"
-      }
-    },
-    {
       "id": 2,
       "name": "IPhone 11",
       "price": 1560000,

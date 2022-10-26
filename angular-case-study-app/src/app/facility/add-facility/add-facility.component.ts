@@ -8,11 +8,25 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class AddFacilityComponent implements OnInit {
 
+  formAdd: FormGroup;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.formAdd = this.fb.group({
+      type: [],
+      name: [],
+      area: [],
+      price: [],
+      capacity: [],
+      standard: [],
+      utilities: [],
+      pool: [],
+      floor: [],
+      free: [],
+      renting: []
+    });
 
   }
 

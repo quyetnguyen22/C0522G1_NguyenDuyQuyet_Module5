@@ -1,3 +1,4 @@
+<title>Customer | Add</title>
 <app-header class="sticky-top"></app-header>
 <body>
 <div class="container col-12">
@@ -6,34 +7,33 @@
 </div>
 
 <div class="container border border-primary w-25 mb-5">
-  <form class="g-3" action="/customer/addNew" method="post">
+  <form [formGroup]="formAdd" (ngSubmit)="addNewCustomer()" class="g-3" method="post">
     <div class="col-12">
       <label for="inputName" class="form-label">Name:</label>
-      <input type="text" class="form-control" id="inputName"/>
+      <input formControlName="name" type="text" class="form-control" id="inputName"/>
       <p style="color: red"></p>
     </div>
     <div class="col-12">
       <label for="inputBirthday" class="form-label">Date of birth:</label>
-      <input type="date"
-             class="form-control" id="inputBirthday"/>
+      <input formControlName="birthday" type="date" class="form-control" id="inputBirthday"/>
     </div>
 
     <div>
       <label>Gender:</label> <br>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="maleId"/>
+        <input formControlName="gender" value="1" class="form-check-input" type="radio" id="maleId"/>
         <label class="form-check-label" for="maleId">
           Male
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="femaleId" checked/>
+        <input formControlName="gender" value="0" class="form-check-input" type="radio" id="femaleId" checked/>
         <label class="form-check-label" for="femaleId">
           Female
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="lgbtId"/>
+        <input formControlName="gender" value="2" class="form-check-input" type="radio" id="lgbtId"/>
         <label class="form-check-label" for="lgbtId">
           LGBT
         </label>
@@ -42,40 +42,38 @@
 
     <div class="col-12">
       <label for="inputIdNum" class="form-label">ID number:</label>
-      <input type="text" class="form-control" id="inputIdNum"/>
+      <input formControlName="idNum" type="text" class="form-control" id="inputIdNum"/>
       <p style="color: red"></p>
     </div>
 
     <div class="col-12">
       <label for="inputPhoneNum" class="form-label">Phone number:</label>
-      <input type="text" class="form-control" id="inputPhoneNum"/>
+      <input formControlName="phone" type="text" class="form-control" id="inputPhoneNum"/>
       <p style="color: red"></p>
     </div>
 
     <div class="col-12">
       <label for="inputEmail" class="form-label">Email:</label>
-      <input type="text" class="form-control" id="inputEmail" placeholder="acb@gmail.com"/>
+      <input formControlName="email" type="text" class="form-control" id="inputEmail" placeholder="acb@gmail.com"/>
       <p style="color: red"></p>
     </div>
 
     <div class="col-12">
       <label for="inputAddress" class="form-label">Address:</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
+      <input formControlName="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
     </div>
 
     <div class="col-12">
       <label class="form-label">Rank:</label>
-      <select class="form-select">
-        <option>Diamond</option>
-        <option>Gold</option>
-        <option>Silver</option>
-        <option>Member</option>
+      <select formControlName="rank" class="form-select">
+        <option value="null">Select rank</option>
+        <option *ngFor="let rank of ranks" [ngValue]="rank">{{rank.rankName}}</option>
       </select>
     </div>
 
     <div class="col-12 mt-3 text-center mb-3">
       <button type="submit" class="btn btn-primary">Save</button>
-      <a href="/customer/list" class="btn btn-secondary mx-3 text-white text-decoration-none">Customer list</a>
+      <a routerLink="/customer/list" class="btn btn-secondary mx-3 text-white text-decoration-none">Customer list</a>
     </div>
   </form>
 </div>

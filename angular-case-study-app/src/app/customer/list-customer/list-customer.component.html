@@ -1,3 +1,4 @@
+<title>Customer</title>
 <app-header class="sticky-top"></app-header>
 <body>
 <div class="container col-12">
@@ -10,126 +11,39 @@
 <div class="container">
   <table id="customerTable" class="table bg-light table-striped table-bordered text-center" style="width: 100%">
     <tr>
-      <th>#</th>
+      <th>No</th>
       <th>Name</th>
       <th>Gender</th>
       <th>Date of birth</th>
       <th>Phone number</th>
       <th>Email</th>
       <th>Address</th>
+      <th>Rank</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
 
-    <tr>
-      <td>1</td>
+    <tr *ngFor="let customer of customers; index as i">
+      <td>{{i + 1}}</td>
       <td>
-        <a class="text-decoration-none">Nguyen Tat Thanh
-        </a>
+        <a class="text-decoration-none">{{customer.name}}</a>
       </td>
-      <td>Male</td>
-      <td>19/05/1890</td>
-      <td>0962854216</td>
-      <td>tatthanh@gmail.com</td>
-      <td>Quang Nam</td>
       <td>
-        <a href="edit.html" style="background-color: #EB9900" class="btn btn-warning btn-sm">Edit</a>
+        <span *ngIf="customer.gender == 1">Male</span>
+        <span *ngIf="customer.gender == 0">Female</span>
+        <span *ngIf="customer.gender == 2">LGBT</span>
+      </td>
+      <td>{{customer.birthday | date:"yyyy-MM-dd"}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.email}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.rank.rankName}}</td>
+      <td>
+        <a routerLink="customer/{{customer.id}}" class="btn bg-warning btn-sm">Edit</a>
 
       </td>
       <td>
-        <button style="background-color: red" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                data-bs-target="#exampleModalDel">
-          <i class="fas fa-address-card"></i>
-          Delete
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>
-        <a class="text-decoration-none">Nguyen Tat Thanh
-        </a>
-      </td>
-      <td>Male</td>
-      <td>19/05/1890</td>
-      <td>0962854216</td>
-      <td>tatthanh@gmail.com</td>
-      <td>Quang Nam</td>
-      <td>
-        <a href="edit.html" style="background-color: #EB9900" class="btn btn-warning btn-sm">Edit</a>
-
-      </td>
-      <td>
-        <button style="background-color: red" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                data-bs-target="#exampleModalDel">
-          <i class="fas fa-address-card"></i>
-          Delete
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>
-        <a class="text-decoration-none">Nguyen Tat Thanh
-        </a>
-      </td>
-      <td>Male</td>
-      <td>19/05/1890</td>
-      <td>0962854216</td>
-      <td>tatthanh@gmail.com</td>
-      <td>Quang Nam</td>
-      <td>
-        <a href="edit.html" style="background-color: #EB9900" class="btn btn-warning btn-sm">Edit</a>
-
-      </td>
-      <td>
-        <button style="background-color: red" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                data-bs-target="#exampleModalDel">
-          <i class="fas fa-address-card"></i>
-          Delete
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>
-        <a class="text-decoration-none">Nguyen Tat Thanh
-        </a>
-      </td>
-      <td>Male</td>
-      <td>19/05/1890</td>
-      <td>0962854216</td>
-      <td>tatthanh@gmail.com</td>
-      <td>Quang Nam</td>
-      <td>
-        <a href="edit.html" style="background-color: #EB9900" class="btn btn-warning btn-sm">Edit</a>
-
-      </td>
-      <td>
-        <button style="background-color: red" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                data-bs-target="#exampleModalDel">
-          <i class="fas fa-address-card"></i>
-          Delete
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>
-        <a class="text-decoration-none">Nguyen Tat Thanh
-        </a>
-      </td>
-      <td>Male</td>
-      <td>19/05/1890</td>
-      <td>0962854216</td>
-      <td>tatthanh@gmail.com</td>
-      <td>Quang Nam</td>
-      <td>
-        <a href="edit.html" style="background-color: #EB9900" class="btn btn-warning btn-sm">Edit</a>
-
-      </td>
-      <td>
-        <button style="background-color: red" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+        <button class="btn bg-danger btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal"
                 data-bs-target="#exampleModalDel">
           <i class="fas fa-address-card"></i>
           Delete

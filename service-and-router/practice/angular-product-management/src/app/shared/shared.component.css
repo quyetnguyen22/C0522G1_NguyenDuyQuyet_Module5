@@ -1,0 +1,25 @@
+#navbarSupportedContent ul ul {
+  position: absolute;
+  visibility: hidden;
+}
+
+#navbarSupportedContent ul li:hover ul {
+  visibility: visible;
+}
+
+.dropdown-menu {
+  display: block;
+}
+
+#navbarSupportedContent li a:hover {
+  background-color: orange;
+  color: white;
+}
+
+.nav-link {
+  padding: 1rem 1rem;
+}
+
+.textColor {
+  color: #EB9900;
+}

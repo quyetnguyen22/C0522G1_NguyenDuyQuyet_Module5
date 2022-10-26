@@ -1,17 +1,19 @@
-#navbarSupportedContent ul ul{
+#navbarSupportedContent ul ul {
   position: absolute;
   visibility: hidden;
 }
 
-#navbarSupportedContent ul li:hover ul{
+#navbarSupportedContent ul li:hover ul {
   visibility: visible;
 }
+
 .dropdown-menu {
   display: block;
 }
 
-#navbarSupportedContent li a:hover{
-  background-color: white;
+#navbarSupportedContent li a:hover {
+  background-color: orange;
+  color: white;
 }
 
 .nav-link {

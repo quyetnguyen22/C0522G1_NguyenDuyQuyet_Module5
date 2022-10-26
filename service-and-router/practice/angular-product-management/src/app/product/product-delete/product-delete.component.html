@@ -1,6 +1,6 @@
 <h1 class="text-center">DELETE PRODUCT</h1>
 
-<form [formGroup]="formDelete" (ngSubmit)="saveDeleting()">
+<form [formGroup]="formDelete" (ngSubmit)="saveDeleting()" class="container w-25">
   <div class="mb-3">
     <label for="exampleInputId" class="form-label">ID</label>
     <input formControlName="id" type="number" class="form-control" id="exampleInputId">

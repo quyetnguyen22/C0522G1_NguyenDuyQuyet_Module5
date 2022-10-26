@@ -11,6 +11,7 @@ import {CategoryUpdateComponent} from './category/category-update/category-updat
 import {CategoryDeleteComponent} from './category/category-delete/category-delete.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CategoryModule} from './category/category.module';
+import { SharedComponent } from './shared/shared.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {CategoryModule} from './category/category.module';
     CategoryListComponent,
     CategoryAddComponent,
     CategoryUpdateComponent,
-    CategoryDeleteComponent
+    CategoryDeleteComponent,
+    SharedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -7,17 +8,22 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  pageYoffset = 0;
+
+  @HostListener('window:scroll', ['$event']) onScroll(event) {
+    this.pageYoffset = window.pageYOffset;
+  }
+
+  constructor(private scroll: ViewportScroller) {
 
   }
 
-  windowScrolled = false;
+  scrollToTop() {
+    this.scroll.scrollToPosition([0, 0]);
+  }
 
   ngOnInit(): void {
 
   }
 
-  scrollToTop(): void {
-    window.scrollTo(0, 0);
-  }
 }
