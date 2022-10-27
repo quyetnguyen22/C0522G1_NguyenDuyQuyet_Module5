@@ -1,6 +1,6 @@
 body{
   background-image: url('https://wallpapercave.com/wp/wp4611912.jpg');
-  position: fixed;
+  /*position: fixed;*/
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;

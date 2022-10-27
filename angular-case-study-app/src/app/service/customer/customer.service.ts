@@ -30,6 +30,11 @@ export class CustomerService {
   }
 
   editObject(customer: Customer): Observable<void> {
-    return this.http.patch<void>(URL_API + '/' + customer.id, customer);
+    console.log(customer);
+    return this.http.patch<void>(URL_API + '/edit/' + customer.id, customer);
+  }
+
+  deleteObject(id: number): Observable<void> {
+    return this.http.delete<void>(URL_API + '/del/' + id);
   }
 }

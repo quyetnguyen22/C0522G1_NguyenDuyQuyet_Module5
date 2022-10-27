@@ -6,16 +6,17 @@
 </div>
 
 <div class="container border border-primary w-25 mb-5">
-  <form class="g-3" [formGroup]="formEdit" method="post">
-    <input type="hidden" />
+  <form class="g-3" [formGroup]="formEdit" (ngSubmit)="saveEditing()" method="post">
+    <input formControlName="id" type="hidden"/>
     <div class="col-12">
       <label for="inputName" class="form-label">Name:</label>
-      <input formControlName="name" type="text"  class="form-control" id="inputName" value="Nguyen Tat Thanh"/>
+      <input formControlName="name" type="text" class="form-control" id="inputName"/>
       <p style="color: red"></p>
     </div>
     <div class="col-12">
       <label for="inputBirthday" class="form-label">Date of birth:</label>
-      <input formControlName="birthday" type="date" class="form-control" id="inputBirthday" value="1980-05-19"/>
+      <input formControlName="birthday" type="date" class="form-control" value="{{birthday | date: 'dd-MM-yyyy'}}"
+             id="inputBirthday"/>
     </div>
 
     <div>
@@ -54,13 +55,15 @@
 
     <div class="col-12">
       <label for="inputEmail" class="form-label">Email:</label>
-      <input formControlName="email" type="text" class="form-control" id="inputEmail" value="tatthanh@gmail.com" placeholder="acb@gmail.com"/>
+      <input formControlName="email" type="text" class="form-control" id="inputEmail" value="tatthanh@gmail.com"
+             placeholder="acb@gmail.com"/>
       <p style="color: red"></p>
     </div>
 
     <div class="col-12">
       <label for="inputAddress" class="form-label">Address:</label>
-      <input formControlName="address" type="text" class="form-control" id="inputAddress" value="Quang Nam" placeholder="1234 Main St"/>
+      <input formControlName="address" type="text" class="form-control" id="inputAddress" value="Quang Nam"
+             placeholder="1234 Main St"/>
     </div>
 
     <div class="col-12">

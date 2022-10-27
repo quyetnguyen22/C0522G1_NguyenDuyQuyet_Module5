@@ -171,7 +171,7 @@
           <div class="container w-75">
             <div class="col-12">
               <label for="beginDate" class="form-label">Begin Date:</label>
-              <input type="date" id="beginDate" th:min="${beginDate}" class="form-control"/>
+              <input type="date" id="beginDate" class="form-control"/>
             </div>
             <div class="col-12" id="endDay">
               <label for="endDate" class="form-label">End Date:</label>
@@ -184,25 +184,19 @@
             <div class="col-12 mb-3">
               <label class="form-label">Employee:</label>
               <select id="employee" class="form-select">
-                <option th:each="em : ${employees}" th:text="${em.name}"
-                        th:value="${em.id}">
-                </option>
+                <option></option>
               </select>
             </div>
             <div class="col-12 mb-3">
               <label class="form-label">Customer:</label>
               <select id="customer" class="form-select">
-                <option th:each="cus : ${customers}" th:text="${cus.name}"
-                        th:value="${cus.id}">
-                </option>
+                <option></option>
               </select>
             </div>
             <div class="col-12 mb-3">
               <label class="form-label">Service:</label>
               <select id="services" class="form-select">
-                <option th:each="ser : ${services}" th:text="${ser.name}"
-                        th:value="${ser.id}">
-                </option>
+                <option></option>
               </select>
             </div>
           </div>

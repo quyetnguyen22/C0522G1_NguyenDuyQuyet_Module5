@@ -5,6 +5,7 @@ import {IProduct} from '../../model/iproduct';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Category} from '../../model/category';
 import {CategoryService} from '../../service/category.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-update',
@@ -45,6 +46,14 @@ export class ProductUpdateComponent implements OnInit {
   saveEditing() {
     const product = this.formUpdate.value;
     this.productService.editProduct(product).subscribe(() => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Edit successfully!',
+          text: 'Customer: ' + product.name,
+          showConfirmButton: false,
+          timer: 2500
+        });
     },
       error => {},
       () => {this.router.navigateByUrl('product/list'); });

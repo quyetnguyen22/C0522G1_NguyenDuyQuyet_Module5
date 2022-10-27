@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerService} from '../../service/customer/customer.service';
 import {Customer} from '../../model/customer/customer';
-import {RankService} from '../../service/customer/rank.service';
-import {Rank} from '../../model/customer/rank';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-customer',
@@ -12,6 +11,8 @@ import {Rank} from '../../model/customer/rank';
 export class ListCustomerComponent implements OnInit {
 
   customers: Customer[] = [];
+  delName: string;
+  delId: number;
 
   constructor(private customerService: CustomerService) {
   }
@@ -27,4 +28,25 @@ export class ListCustomerComponent implements OnInit {
     });
   }
 
+  deleteConfirm(customer: Customer) {
+    console.log(customer);
+    this.delName = customer.name;
+    this.delId = customer.id;
+    }
+
+  delete() {
+    this.customerService.deleteObject(this.delId).subscribe(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Delete successfully!',
+        text: 'Customer: ' + this.delName,
+        showConfirmButton: false,
+        timer: 2500
+      });
+      this.getAllCustomer();
+      // confirm('Delete successfully!\n' + this.delName);
+    });
+
+  }
 }

@@ -33,19 +33,21 @@
         <span *ngIf="customer.gender == 0">Female</span>
         <span *ngIf="customer.gender == 2">LGBT</span>
       </td>
-      <td>{{customer.birthday | date:"yyyy-MM-dd"}}</td>
+      <td>{{customer.birthday | date:"dd-MM-yyyy"}}</td>
       <td>{{customer.phone}}</td>
       <td>{{customer.email}}</td>
       <td>{{customer.address}}</td>
       <td>{{customer.rank.rankName}}</td>
       <td>
-        <a routerLink="customer/{{customer.id}}" class="btn bg-warning btn-sm">Edit</a>
+        <a routerLink="/customer/{{customer.id}}" class="btn bg-warning btn-sm">
+          <i class="fas fa-address-card"></i>
+          Edit
+        </a>
 
       </td>
       <td>
-        <button class="btn bg-danger btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal"
+        <button (click)="deleteConfirm(customer)" type="button" class="btn bg-danger btn-sm" data-bs-toggle="modal"
                 data-bs-target="#exampleModalDel">
-          <i class="fas fa-address-card"></i>
           Delete
         </button>
       </td>
@@ -56,22 +58,23 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">You are about to delete:</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"
-                  aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <span class="ps-2">Customer: </span>
-          <span style="color: red" text="${employee.name}"></span>
+          <span>Are you sure to delete: <span style="color: red">{{delName}}</span></span>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="@{/employee/delete/__${employee.id}__}" type="submit"
-             class="btn btn-primary text-decoration-none">Delete</a>
+          <button type="button" class="btn btn-primary" (click)="delete()" data-bs-toggle="modal" data-bs-target="#modalInform"
+                  data-bs-dismiss="modal">Yes
+          </button>
         </div>
       </div>
     </div>
   </div>
+  <!-- Modal inform-->
 
   <div>
     <nav aria-label="Page navigation example">

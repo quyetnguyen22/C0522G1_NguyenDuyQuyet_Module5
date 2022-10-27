@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'customer/:idUpdate',
     component: EditCustomerComponent
+  },
+  {
+    path: 'customer/del/:id',
+    component: EditCustomerComponent
   }
 ];
 

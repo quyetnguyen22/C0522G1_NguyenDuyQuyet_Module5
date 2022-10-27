@@ -9,12 +9,12 @@ import {EditCustomerComponent} from './edit-customer/edit-customer.component';
 import {SharedModule} from '../shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AddCustomerComponent,
     ListCustomerComponent,
-    EditCustomerComponent],
+    EditCustomerComponent,
+   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

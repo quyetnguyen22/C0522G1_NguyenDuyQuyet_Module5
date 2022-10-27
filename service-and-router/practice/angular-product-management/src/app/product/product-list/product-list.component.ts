@@ -11,8 +11,12 @@ import {Category} from '../../model/category';
 export class ProductListComponent implements OnInit {
 
   products: IProduct[] = [];
+  collection = [];
 
   constructor(private productService: ProductService) {
+    for (let i = 1; i <= 100; i++) {
+      this.collection.push(`item ${i}`);
+    }
   }
 
   ngOnInit(): void {
