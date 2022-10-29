@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {IProduct} from '../../model/iproduct';
-import {Category} from '../../model/category';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {ProductResult} from '../../model/product-result';
 
 @Component({
   selector: 'app-product-list',
@@ -10,13 +11,12 @@ import {Category} from '../../model/category';
 })
 export class ProductListComponent implements OnInit {
 
-  products: IProduct[] = [];
-  collection = [];
+  page = 1;
+  pageSize = 2;
+  products$: Observable<IProduct[]>;
+  total$: Observable<number>;
 
   constructor(private productService: ProductService) {
-    for (let i = 1; i <= 100; i++) {
-      this.collection.push(`item ${i}`);
-    }
   }
 
   ngOnInit(): void {
@@ -24,8 +24,10 @@ export class ProductListComponent implements OnInit {
   }
 
   getAllProduct() {
-    this.productService.getAll().subscribe(value => {
-      this.products = value;
+    this.productService.getAll(this.page, this.pageSize).subscribe(value => {
+      this.products$ = new BehaviorSubject<IProduct[]>(value.data);
+      this.total$ = new BehaviorSubject<number>(value.pagination._totalRows);
     });
   }
+
 }

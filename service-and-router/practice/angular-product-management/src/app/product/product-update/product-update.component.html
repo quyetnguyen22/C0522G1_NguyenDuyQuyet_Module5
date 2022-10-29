@@ -8,14 +8,26 @@
   <div class="mb-3">
     <label for="exampleInputName" class="form-label">Name</label>
     <input formControlName="name" type="text" class="form-control" id="exampleInputName">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.name.dirty || submitted) && formUpdateControl.name.errors?.required">
+      Name's product is required
+    </p>
   </div>
   <div class="mb-3">
     <label for="exampleInputPrice" class="form-label">Price</label>
     <input formControlName="price" type="number" class="form-control" id="exampleInputPrice">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.price.dirty || submitted) && formUpdateControl.price.errors?.required">
+      Price's product is required
+    </p>
   </div>
   <div class="mb-3">
     <label for="inputDescription" class="form-label">Description</label>
     <input formControlName="description" type="text" class="form-control" id="inputDescription">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.description.dirty || submitted) && formUpdateControl.description.errors?.required">
+      Description's product is required
+    </p>
   </div>
   <div class="mb-3">
     <label class="form-label">Category</label>
@@ -23,6 +35,10 @@
 <!--      <option value="null">Select category</option>-->
       <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
     </select>
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.category.touched || submitted) && formUpdateControl.category.errors?.required">
+      Category's product is required
+    </p>
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
 </form>

@@ -16,7 +16,7 @@ export class EditCustomerComponent implements OnInit {
 
   formEdit: FormGroup;
   customer: Customer;
-  birthday: DatePipe;
+  birthday: string;
   ranks: Rank[] = [];
 
   constructor(private customerService: CustomerService,

@@ -16,14 +16,14 @@
       <th>Gender</th>
       <th>Date of birth</th>
       <th>Phone number</th>
-      <th>Email</th>
+      <!--      <th>Email</th>-->
       <th>Address</th>
       <th>Rank</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
 
-    <tr *ngFor="let customer of customers; index as i">
+    <tr *ngFor="let customer of (customers$ | async)!; index as i">
       <td>{{i + 1}}</td>
       <td>
         <a class="text-decoration-none">{{customer.name}}</a>
@@ -35,7 +35,7 @@
       </td>
       <td>{{customer.birthday | date:"dd-MM-yyyy"}}</td>
       <td>{{customer.phone}}</td>
-      <td>{{customer.email}}</td>
+      <!--      <td>{{customer.email}}</td>-->
       <td>{{customer.address}}</td>
       <td>{{customer.rank.rankName}}</td>
       <td>
@@ -53,6 +53,25 @@
       </td>
     </tr>
   </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="(total$ | async)!"
+      [(page)]="page"
+      [maxSize]="3"
+      [rotate]="true"
+      [pageSize]="pageSize"
+      [boundaryLinks]="true"
+      (pageChange)="getAllCustomer()"
+    >
+    </ngb-pagination>
+
+    <select class="form-control-sm" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getAllCustomer()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
   <!-- Modal Delete-->
   <div class="modal fade" id="exampleModalDel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -67,7 +86,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="delete()" data-bs-toggle="modal" data-bs-target="#modalInform"
+          <button type="button" class="btn btn-primary" (click)="delete()" data-bs-toggle="modal"
+                  data-bs-target="#modalInform"
                   data-bs-dismiss="modal">Yes
           </button>
         </div>
@@ -76,25 +96,5 @@
   </div>
   <!-- Modal inform-->
 
-  <div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="@{'/customer/list'(page=${allCustomer.number - 1},search=${search})}"
-             if="${allCustomer.hasPrevious()}">Previous</a>
-        </li>
-        <li class="page-item" each="star:${#numbers.sequence(1,allCustomer.totalPages - 1)}">
-          <a class="page-link"
-             href="@{'/customer/list'(page=${star},search=${search})}">
-            <span text="${star}">1</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="@{'/customer/list'(page=${allCustomer.number + 1},search=${search})}"
-             if="${allCustomer.hasNext()}">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </div>
 </body>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerService} from '../../service/customer/customer.service';
 import {Customer} from '../../model/customer/customer';
 import Swal from 'sweetalert2';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-list-customer',
@@ -10,9 +11,13 @@ import Swal from 'sweetalert2';
 })
 export class ListCustomerComponent implements OnInit {
 
-  customers: Customer[] = [];
+
   delName: string;
   delId: number;
+  page = 1;
+  pageSize = 10;
+  total$: Observable<number>;
+  customers$: Observable<Customer[]>;
 
   constructor(private customerService: CustomerService) {
   }
@@ -22,10 +27,12 @@ export class ListCustomerComponent implements OnInit {
   }
 
   getAllCustomer() {
-    this.customerService.getAll().subscribe(value => {
-      this.customers = value;
-      console.log(value);
-    });
+    this.customerService.getAll(this.page, this.pageSize).subscribe(value => {
+      this.customers$ = new BehaviorSubject<Customer[]>(value.content);
+      this.total$ = new BehaviorSubject<number>(value.totalElements);
+      // console.log(value.number);
+    },
+      error => {});
   }
 
   deleteConfirm(customer: Customer) {

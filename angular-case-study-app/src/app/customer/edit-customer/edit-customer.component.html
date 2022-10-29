@@ -15,8 +15,7 @@
     </div>
     <div class="col-12">
       <label for="inputBirthday" class="form-label">Date of birth:</label>
-      <input formControlName="birthday" type="date" class="form-control" value="{{birthday | date: 'dd-MM-yyyy'}}"
-             id="inputBirthday"/>
+      <input formControlName="birthday" type="date" value="{{birthday | date: 'yyyy-MM-dd'}}" class="form-control" id="inputBirthday"/>
     </div>
 
     <div>

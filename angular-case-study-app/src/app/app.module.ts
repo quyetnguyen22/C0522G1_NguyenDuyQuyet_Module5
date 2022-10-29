@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {ContractModule} from './contract/contract.module';
 import {CustomerModule} from './customer/customer.module';
 import {FacilityModule} from './facility/facility.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FacilityModule} from './facility/facility.module';
     ContractModule,
     CustomerModule,
     FacilityModule,
-    HomeModule
+    HomeModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

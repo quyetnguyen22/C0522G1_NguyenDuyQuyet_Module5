@@ -1,10 +1,9 @@
 import {Rank} from './rank';
-import {DatePipe} from '@angular/common';
 
 export interface Customer {
   id?: number;
   name?: string;
-  birthday?: DatePipe;
+  birthday?: string;
   gender?: number;
   idNum?: string;
   phone?: string;

@@ -9,14 +9,30 @@
     <th>Update</th>
     <th>Delete</th>
   </tr>
-  <tr *ngFor="let product of products; index as i">
-    <td>{{i + 1}}</td>
+  <tr *ngFor="let product of (products$ | async)!; index as i">
+    <td>{{i + 1 + (page - 1) * pageSize}}</td>
     <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
+    <td>{{product.price | currency: ' '}} vnd</td>
     <td>{{product.description}}</td>
     <td>{{product.category.name}}</td>
     <td><a class="text-decoration-none" routerLink="/product/{{product.id}}">Update</a></td>
     <td><a class="text-decoration-none" routerLink="/productDel/{{product.id}}">Remove</a></td>
   </tr>
 </table>
+<div class="d-flex justify-content-between p-2 container">
+  <ngb-pagination
+    [collectionSize]="(total$ | async)!"
+    [(page)]="page"
+    [maxSize]="3"
+    [pageSize]="pageSize"
+    [boundaryLinks]="true"
+    (pageChange)="getAllProduct()"
+  >
+  </ngb-pagination>
 
+  <select class="form-control-sm" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getAllProduct()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>

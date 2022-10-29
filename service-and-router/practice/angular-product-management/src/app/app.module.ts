@@ -12,6 +12,7 @@ import {CategoryDeleteComponent} from './category/category-delete/category-delet
 import {ReactiveFormsModule} from '@angular/forms';
 import {CategoryModule} from './category/category.module';
 import { SharedComponent } from './shared/shared.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SharedComponent } from './shared/shared.component';
     HttpClientModule,
     ProductModule,
     CategoryModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

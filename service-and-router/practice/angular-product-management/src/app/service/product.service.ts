@@ -3,6 +3,7 @@ import {IProduct} from '../model/iproduct';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {ProductResult} from '../model/product-result';
 
 const API_URL = `${environment.productUrl}`;
 
@@ -15,8 +16,8 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(API_URL);
+  getAll(page: number, limit: number): Observable<ProductResult<IProduct>> {
+    return this.http.get<ProductResult<IProduct>>(API_URL + '?_page=' + page + '&_limit=' + limit);
   }
 
   saveProduct(product: IProduct): Observable<void> {

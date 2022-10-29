@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Customer} from '../../model/customer/customer';
 import {environment} from '../../../environments/environment';
+import {DataResult} from '../../model/data-result';
 
 const URL_API = `${environment.url}`;
 
@@ -17,8 +18,9 @@ export class CustomerService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(URL_API + '/list');
+  getAll(page: number, pageSize: number): Observable<DataResult<Customer>> {
+    console.log(URL_API + '/list?page=' + (page - 1) + '&size=' + pageSize);
+    return this.http.get<DataResult<Customer>>(URL_API + '/list?page=' + (page - 1) + '&size=' + pageSize);
   }
 
   findById(id: number): Observable<Customer> {

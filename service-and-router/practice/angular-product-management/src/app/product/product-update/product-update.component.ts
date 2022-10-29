@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IProduct} from '../../model/iproduct';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../../model/category';
 import {CategoryService} from '../../service/category.service';
 import Swal from 'sweetalert2';
@@ -17,6 +17,7 @@ export class ProductUpdateComponent implements OnInit {
   formUpdate: FormGroup;
   product: IProduct;
   categories: Category[] = [];
+  submitted = false;
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
@@ -35,10 +36,10 @@ export class ProductUpdateComponent implements OnInit {
     console.log(this.product);
     this.formUpdate = this.fb.group({
       id: [],
-      name: [],
-      price: [],
-      description: [],
-      category: []
+      name: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      description: ['', Validators.required],
+      category: ['', [Validators.required]]
     });
     this.getAllCategories();
   }
@@ -49,8 +50,8 @@ export class ProductUpdateComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Edit successfully!',
-          text: 'Customer: ' + product.name,
+          title: 'Updated successfully!',
+          text: 'Product: ' + product.name,
           showConfirmButton: false,
           timer: 2500
         });
@@ -68,5 +69,9 @@ export class ProductUpdateComponent implements OnInit {
 
   compareWithId(item1, item2) {
     return item1 && item2 && item1.id === item2.id;
+  }
+
+  get formUpdateControl() {
+    return this.formUpdate.controls;
   }
 }
