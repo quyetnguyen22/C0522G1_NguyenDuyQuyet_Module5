@@ -1,0 +1,44 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Truong Tan Hai"
+    },
+    {
+      "id": 2,
+      "name": "Doan Phuoc Trung"
+    },
+    {
+      "id": 3,
+      "name": "Nguyen Duy Quyet"
+    }
+  ],
+  "savingBooks": [
+    {
+      "id": 2,
+      "customer": {
+        "id": 2,
+        "name": "Doan Phuoc Trung"
+      },
+      "openDate": "2022-10-23",
+      "savingDate": "2022-10-24",
+      "period": 6,
+      "amount": "300000000",
+      "interest": "8",
+      "promotion": "Áo mua"
+    },
+    {
+      "id": 10,
+      "customer": {
+        "id": 2,
+        "name": "Tran Van Chanh"
+      },
+      "openDate": "2022-10-23",
+      "savingDate": "2022-10-24",
+      "period": 6,
+      "amount": "50000000",
+      "interest": 8,
+      "promotion": "Áo mua"
+    }
+  ]
+}

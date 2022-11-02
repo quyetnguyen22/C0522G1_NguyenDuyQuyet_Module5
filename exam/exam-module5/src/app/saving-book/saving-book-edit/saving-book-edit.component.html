@@ -1,0 +1,86 @@
+<h1 class="text-center">UPDATE PRODUCT</h1>
+<!--<div *ngIf="categories !== undefined">-->
+<form [formGroup]="formUpdate" (ngSubmit)="saveEditing()" class="container w-25">
+  <div class="mb-3">
+    <input formControlName="id" readonly class="form-control">
+  </div>
+  <div class="mb-3" formGroupName="customer">
+    <input formControlName="id" readonly class="form-control">
+    <label for="exampleInputName" class="form-label">Customer name</label>
+    <input formControlName="name" type="text" class="form-control" id="exampleInputName">
+    <p class="text-danger"
+       *ngIf="formUpdate.hasError('required') && formUpdate.get('customer').touched">
+      Name's customer is required
+    </p>
+    <p class="text-danger"
+       *ngIf="formUpdate.hasError('invalidName',['customer']) && formUpdate.get('customer').dirty">
+      Name's customer is wrong format
+    </p>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPrice" class="form-label">Open date</label>
+    <input formControlName="openDate" type="date" class="form-control" id="exampleInputPrice">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.openDate.dirty || submitted) && formUpdateControl.openDate.errors?.required">
+      Open date is required
+    </p>
+  </div>
+  <div class="mb-3">
+    <label for="inputDescription" class="form-label">Saving begin</label>
+    <input formControlName="savingDate" type="date" class="form-control" id="inputDescription">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.savingDate.dirty || submitted) && formUpdateControl.savingDate.errors?.required">
+      Saving begin is required
+    </p>
+  </div>
+<!--  <div class="mb-3">-->
+<!--    <label for="inputDescription" class="form-label">Period</label>-->
+<!--    <input formControlName="period" type="text" class="form-control" id="inputPeriod">-->
+<!--    <p class="text-danger"-->
+<!--       *ngIf="(formUpdateControl.period.dirty || submitted) && formUpdateControl.period.errors?.required">-->
+<!--      Period's product is required-->
+<!--    </p>-->
+<!--  </div>-->
+  <div class="mb-3">
+    <label class="form-label">Period</label>
+    <select formControlName="period" class="form-select">
+      <!--      <option value="null">Select category</option>-->
+      <option *ngFor="let period of periods" [ngValue]="period">{{period}}</option>
+    </select>
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.period.dirty || submitted) && formUpdateControl.period.errors?.required">-->
+            Period's product is required
+    </p>
+  </div>
+  <div class="mb-3">
+    <label for="inputDescription" class="form-label">Amount</label>
+    <input formControlName="amount" type="text" class="form-control" id="inputAmount">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.amount.dirty || submitted) && formUpdateControl.amount.errors?.required">
+      Amount is required
+    </p>
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.amount.dirty || submitted) && formUpdateControl.amount.errors?.min">
+      Amount must be greater than 10.000.000 VND
+    </p>
+  </div>
+  <div class="mb-3">
+    <label for="inputDescription" class="form-label">Interest</label>
+    <input formControlName="interest" type="text" class="form-control" id="inputInterest">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.interest.dirty || submitted) && formUpdateControl.interest.errors?.required">
+      Interest is required
+    </p>
+  </div>
+  <div class="mb-3">
+    <label for="inputDescription" class="form-label">Promotion</label>
+    <input formControlName="promotion" type="text" class="form-control" id="inputPromotion">
+    <p class="text-danger"
+       *ngIf="(formUpdateControl.promotion.dirty || submitted) && formUpdateControl.promotion.errors?.required">
+      Promotion is required
+    </p>
+  </div>
+  <button type="submit" class="btn btn-primary mx-3">Save</button>
+  <a routerLink="/savingBook/list" class="btn btn-primary">Back to list</a>
+</form>
+<!--</div>-->

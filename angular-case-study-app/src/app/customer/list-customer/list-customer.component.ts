@@ -16,6 +16,7 @@ export class ListCustomerComponent implements OnInit {
   delId: number;
   page = 1;
   pageSize = 10;
+  name = '';
   total$: Observable<number>;
   customers$: Observable<Customer[]>;
 
@@ -27,19 +28,21 @@ export class ListCustomerComponent implements OnInit {
   }
 
   getAllCustomer() {
-    this.customerService.getAll(this.page, this.pageSize).subscribe(value => {
-      this.customers$ = new BehaviorSubject<Customer[]>(value.content);
-      this.total$ = new BehaviorSubject<number>(value.totalElements);
-      // console.log(value.number);
-    },
-      error => {});
+    this.customerService.getCustomer(this.name, this.page, this.pageSize).subscribe(value => {
+        console.log(value);
+        this.customers$ = new BehaviorSubject<Customer[]>(value.content);
+        this.total$ = new BehaviorSubject<number>(value.totalElements);
+        // console.log(value.number);
+      },
+      error => {
+      });
   }
 
   deleteConfirm(customer: Customer) {
     console.log(customer);
     this.delName = customer.name;
     this.delId = customer.id;
-    }
+  }
 
   delete() {
     this.customerService.deleteObject(this.delId).subscribe(() => {

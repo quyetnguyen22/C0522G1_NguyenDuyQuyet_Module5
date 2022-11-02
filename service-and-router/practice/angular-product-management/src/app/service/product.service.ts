@@ -33,7 +33,7 @@ export class ProductService {
   }
 
   findById(productId: number): Observable<IProduct> {
-    return this.http.get(API_URL + '/' + productId);
+    return this.http.get<IProduct>(API_URL + '/' + productId);
   }
 
 

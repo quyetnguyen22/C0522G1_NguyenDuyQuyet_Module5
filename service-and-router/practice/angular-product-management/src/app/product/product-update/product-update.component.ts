@@ -74,4 +74,6 @@ export class ProductUpdateComponent implements OnInit {
   get formUpdateControl() {
     return this.formUpdate.controls;
   }
+
+
 }

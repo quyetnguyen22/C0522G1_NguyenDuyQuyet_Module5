@@ -1,0 +1,99 @@
+<h1 class="text-center">SAVING BOOK LIST</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6"></div>
+    <div class="row col-6">
+      <div class="d-inline-flex mb-3">
+        <div class="col-7 px-1"><input type="text" class="form-control" placeholder="Recipient's username"
+                                  aria-label="Recipient's username"
+                                  aria-describedby="button-addon2"></div>
+        <div class="col-3 px-1">
+          <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+            <option selected>Choose...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col-2 px-1">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <table class="table bg-light table-striped table-bordered text-center">
+    <tr class="text-center">
+      <th>Book ID</th>
+      <th>Customer ID</th>
+      <th>Customer name</th>
+      <th>Open date</th>
+      <th>Saving Begin</th>
+      <th>Period</th>
+      <th>Amount</th>
+      <th>Interest</th>
+      <th>Promotion</th>
+      <th>Update</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let book of (savingBooks$ | async)!; index as i">
+      <td>{{book.id}}</td>
+      <td>{{book.customer.id}}</td>
+      <td>{{book.customer.name}}</td>
+      <td>{{book.openDate}}</td>
+      <td>{{book.savingDate}}</td>
+      <td>{{book.period}} tháng</td>
+      <td>{{book.amount | currency: ' '}} VND</td>
+      <td>{{book.interest}}%</td>
+      <td>{{book.promotion}}</td>
+      <td><a class="text-decoration-none" routerLink="/savingBook/{{book.id}}">Update</a></td>
+      <td>
+        <button (click)="deleteConfirm(book)" type="button" class="btn bg-danger btn-sm" data-bs-toggle="modal"
+                data-bs-target="#exampleModalDel">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Modal Delete-->
+<div class="modal fade" id="exampleModalDel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span>Are you sure to delete: <span style="color: red">{{delId}}</span></span>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="delete()" data-bs-toggle="modal"
+                data-bs-target="#modalInform"
+                data-bs-dismiss="modal">Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between p-2 container">
+  <ngb-pagination
+    [collectionSize]="(total$ | async)!"
+    [(page)]="page"
+    [maxSize]="3"
+    [pageSize]="pageSize"
+    [boundaryLinks]="true"
+    (pageChange)="getAllSavingBook()"
+  >
+  </ngb-pagination>
+
+  <select class="form-control-sm" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getAllSavingBook()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>

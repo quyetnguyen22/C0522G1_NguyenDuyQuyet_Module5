@@ -23,6 +23,11 @@ export class CustomerService {
     return this.http.get<DataResult<Customer>>(URL_API + '/list?page=' + (page - 1) + '&size=' + pageSize);
   }
 
+  getCustomer(name: string, page: number, pageSize: number): Observable<DataResult<Customer>> {
+    console.log(URL_API + '/list?name=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
+    return this.http.get<DataResult<Customer>>(URL_API + '/search?name=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
+  }
+
   findById(id: number): Observable<Customer> {
     return this.http.get<Customer>(URL_API + '/' + id);
   }
