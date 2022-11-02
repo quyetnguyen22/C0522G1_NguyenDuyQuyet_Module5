@@ -25,7 +25,7 @@ export class CustomerService {
 
   getCustomer(name: string, page: number, pageSize: number): Observable<DataResult<Customer>> {
     console.log(URL_API + '/list?name=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
-    return this.http.get<DataResult<Customer>>(URL_API + '/search?name=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
+    return this.http.get<DataResult<Customer>>(URL_API + '/list?name=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
   }
 
   findById(id: number): Observable<Customer> {
