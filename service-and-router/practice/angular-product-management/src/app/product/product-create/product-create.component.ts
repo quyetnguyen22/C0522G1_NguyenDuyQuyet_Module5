@@ -28,24 +28,25 @@ export class ProductCreateComponent implements OnInit {
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
       description: ['', Validators.required],
-      category: ['', [Validators.required]]
+      img: ['', Validators.required],
+      // category: ['', [Validators.required]]
     });
-    this.getAllCategories();
+    // this.getAllCategories();
   }
 
   addProduct() {
     this.submitted = true;
     const product = this.formAdd.value;
-    this.productService.saveProduct(product).subscribe(() => {
+    this.productService.saveProduct(product).then(() => {
       this.formAdd.reset();
     });
   }
 
-  getAllCategories() {
-    this.categoryService.getAll().subscribe(value => {
-      this.categories = value;
-    });
-  }
+  // getAllCategories() {
+  //   this.categoryService.getAll().subscribe(value => {
+  //     this.categories = value;
+  //   });
+  // }
 
   get formAddControl() {
     return this.formAdd.controls;

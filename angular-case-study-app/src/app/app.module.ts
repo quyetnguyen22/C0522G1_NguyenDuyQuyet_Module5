@@ -7,7 +7,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {ContractModule} from './contract/contract.module';
 import {CustomerModule} from './customer/customer.module';
 import {FacilityModule} from './facility/facility.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CustomerModule,
     FacilityModule,
     HomeModule,
-    NgbModule
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

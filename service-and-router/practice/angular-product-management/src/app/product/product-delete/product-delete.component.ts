@@ -27,7 +27,7 @@ export class ProductDeleteComponent implements OnInit {
     const id = Number(this.activatedRoute.snapshot.params.delId);
     this.productService.findById(id).subscribe(value => {
       this.formDelete.patchValue(value);
-      this.formDelete.controls.category.patchValue(value.category.name);
+      // this.formDelete.controls.category.patchValue(value.category.name);
     });
     console.log(this.product);
     this.formDelete = this.fb.group({

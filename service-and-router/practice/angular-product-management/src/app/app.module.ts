@@ -13,6 +13,10 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CategoryModule} from './category/category.module';
 import { SharedComponent } from './shared/shared.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductModule,
     CategoryModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

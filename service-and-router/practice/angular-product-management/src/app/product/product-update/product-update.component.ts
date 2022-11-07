@@ -39,9 +39,9 @@ export class ProductUpdateComponent implements OnInit {
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
       description: ['', Validators.required],
-      category: ['', [Validators.required]]
+      // category: ['', [Validators.required]]
     });
-    this.getAllCategories();
+    // this.getAllCategories();
   }
 
   saveEditing() {
@@ -61,11 +61,11 @@ export class ProductUpdateComponent implements OnInit {
 
   }
 
-  private getAllCategories() {
-    this.categoryService.getAll().subscribe(value => {
-      this.categories = value;
-    });
-  }
+  // private getAllCategories() {
+  //   this.categoryService.getAll().subscribe(value => {
+  //     this.categories = value;
+  //   });
+  // }
 
   compareWithId(item1, item2) {
     return item1 && item2 && item1.id === item2.id;

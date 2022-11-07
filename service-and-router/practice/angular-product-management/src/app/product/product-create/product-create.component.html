@@ -29,15 +29,23 @@
     </p>
   </div>
   <div class="mb-3">
-    <label class="form-label">Category</label>
-    <select formControlName="category" class="form-select">
-      <option value="">Select category</option>
-      <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
-    </select>
+    <label for="inputImg" class="form-label">Image</label>
+    <input formControlName="img" type="file" class="form-control" id="inputImg">
     <p class="text-danger"
-       *ngIf="(formAddControl.category.touched || submitted) && formAddControl.category.errors?.required">
-      Category's product is required
+       *ngIf="(formAddControl.img.dirty || submitted) && formAddControl.img.errors?.required">
+      Image's product is required
     </p>
   </div>
+<!--  <div class="mb-3">-->
+<!--    <label class="form-label">Category</label>-->
+<!--    <select formControlName="category" class="form-select">-->
+<!--      <option value="">Select category</option>-->
+<!--      <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>-->
+<!--    </select>-->
+<!--    <p class="text-danger"-->
+<!--       *ngIf="(formAddControl.category.touched || submitted) && formAddControl.category.errors?.required">-->
+<!--      Category's product is required-->
+<!--    </p>-->
+<!--  </div>-->
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

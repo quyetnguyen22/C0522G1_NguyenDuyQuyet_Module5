@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:8080/customer'
+  url: 'http://localhost:8080/customer',
+  firebase: {
+    apiKey: 'AIzaSyATHEWOP0PMMQiMUz2jCyGfnogcXM1J5Ik',
+    authDomain: 'angular-case-study-app.firebaseapp.com',
+    projectId: 'angular-case-study-app',
+    storageBucket: 'angular-case-study-app.appspot.com',
+    messagingSenderId: '943388426702',
+    appId: '1:943388426702:web:1f1e497ec1e8283dcfeb9f',
+    measurementId: 'G-9L7W7N8X1J'
+  }
 };
 
 /*
